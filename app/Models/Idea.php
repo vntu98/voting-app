@@ -14,6 +14,9 @@ class Idea extends Model
 
     const PAGINATION_COUNT = 10;
 
+    const CATEGORY_TUTORIAL_REQUESTS = 'Tutorial Request';
+    const CATEGORY_LARAVEL_FEATURE = 'Laravel Feature';
+
     protected $guarded = [];
 
     public function sluggable(): array
@@ -42,6 +45,7 @@ class Idea extends Model
 
     public function votes()
     {
+        // return $this->morphToMany(User::class, 'votable');
         return $this->belongsToMany(User::class, 'votes');
     }
 
@@ -62,6 +66,8 @@ class Idea extends Model
             throw new DuplicateVoteException;
         };
 
+        $this->votes_count++;
+
         Vote::create([
             'idea_id' => $this->id,
             'user_id' => $user->id
@@ -76,6 +82,7 @@ class Idea extends Model
         
         if ($voteToDelete) {
             $voteToDelete->delete();
+            $this->votes_count--;
         } else {
             throw new VoteNotFoundException;
         }
