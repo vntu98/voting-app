@@ -70,4 +70,13 @@ class User extends Authenticatable
         // return $this->morphToMany(Idea::class, 'votable');
         return $this->belongsToMany(Idea::class, 'votes');
     }
+
+    public function isAdmin()
+    {
+        return in_array($this->email, [
+            'vntu98@gmail.com',
+            'vntu@gmail.com',
+            'vncuong@gmail.com'
+        ]);
+    }
 }
