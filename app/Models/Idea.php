@@ -43,6 +43,11 @@ class Idea extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function votes()
     {
         // return $this->morphToMany(User::class, 'votable');
@@ -54,7 +59,7 @@ class Idea extends Model
         if (!$user) {
             return false;
         }
-        
+
         return Vote::where('user_id', $user->id)
             ->where('idea_id', $this->id)
             ->exists();
@@ -79,7 +84,7 @@ class Idea extends Model
         $voteToDelete = Vote::where('idea_id', $this->id)
             ->where('user_id', $user->id)
             ->first();
-        
+
         if ($voteToDelete) {
             $voteToDelete->delete();
             $this->votes_count--;
