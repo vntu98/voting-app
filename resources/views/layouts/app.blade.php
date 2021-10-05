@@ -71,7 +71,7 @@
                             @endauth
                         </p>
                     </div>
-                    
+
                     @auth
                         <livewire:create-idea />
                     @else
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </main>
-        
+
         @livewireScripts
     </body>
 </html>
