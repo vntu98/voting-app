@@ -53,7 +53,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        //
+        return (int) $comment->user_id === $user->id;
     }
 
     /**
