@@ -18,21 +18,24 @@
     }"
     x-init="
         @if ($redirect)
-        $nextTick(() => showNotification(messageToDisplay))
-@else
-        Livewire.on('ideaWasUpdated', message => {
-            showNotification(message)
-        })
-        Livewire.on('ideaWasMarkedAsSpam', message => {
-            showNotification(message)
-        })
-        Livewire.on('ideaWasMarkedAsNotSpam', message => {
-            showNotification(message)
-        })
-        Livewire.on('statusWasUpdated', message => {
-            showNotification(message)
-        })
-@endif
+            $nextTick(() => showNotification(messageToDisplay))
+        @else
+            Livewire.on('ideaWasUpdated', message => {
+                showNotification(message)
+            })
+            Livewire.on('ideaWasMarkedAsSpam', message => {
+                showNotification(message)
+            })
+            Livewire.on('ideaWasMarkedAsNotSpam', message => {
+                showNotification(message)
+            })
+            Livewire.on('statusWasUpdated', message => {
+                showNotification(message)
+            })
+            Livewire.on('commentWasAdded', message => {
+                showNotification(message)
+            })
+        @endif
         "
     x-show="isOpen"
     x-transition:enter="transition ease-out duration-300"
