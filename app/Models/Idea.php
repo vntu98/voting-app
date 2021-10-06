@@ -12,12 +12,11 @@ class Idea extends Model
 {
     use HasFactory, Sluggable;
 
-    const PAGINATION_COUNT = 10;
-
     const CATEGORY_TUTORIAL_REQUESTS = 'Tutorial Request';
     const CATEGORY_LARAVEL_FEATURE = 'Laravel Feature';
 
     protected $guarded = [];
+    protected $perPage = 10;
 
     public function sluggable(): array
     {
