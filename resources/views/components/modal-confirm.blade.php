@@ -13,8 +13,8 @@
     x-data="{ isOpen: false }"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    @if (! $livewireEventToOpenModal)
-    {{ '@'.$eventToOpenModal }}.window="
+    @if ($eventToOpenModal)
+        {{ '@'.$eventToOpenModal }}.window="
             isOpen = true
             $nextTick(() => $refs.confirmButton.focus())
         "
